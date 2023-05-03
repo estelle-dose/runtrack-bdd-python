@@ -4,15 +4,14 @@ import mysql.connector
 db = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="password",
+  password="Etoile19*",
   database="LaPlateforme"
 )
 
 # Récupération des données de la table "salles"
 mycursor = db.cursor()
-mycursor.execute("SELECT nom, capacite FROM salles")
-result = mycursor.fetchall()
+mycursor.execute("SELECT SUM(superficie) AS superficie_totale FROM etage")
+result = mycursor.fetchone()[0]
 
 # Affichage des données récupérées
-for x in result:
-  print(x)
+print("La superficie de La Plateforme est de", result, "m2")
